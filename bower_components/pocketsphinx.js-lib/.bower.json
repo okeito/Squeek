@@ -1,0 +1,39 @@
+{
+  "name": "pocketsphinx.js-lib",
+  "version": "0.1.0",
+  "authors": [
+    "Sylvain Chevalier <sylvain.chevalier@gmail.com>"
+  ],
+  "description": "Speech recognizer in JavaScript",
+  "main": [
+    "pocketsphinx.js",
+    "audioRecorder.js",
+    "audioRecorderWorker.js",
+    "callbackManager.js",
+    "recognizer.js",
+    "README.md"
+  ],
+  "keywords": [
+    "speech recognition",
+    "pocketsphinx.js"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "homepage": "https://github.com/syl22-00/pocketsphinx.js-lib",
+  "_release": "0.1.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.1.0",
+    "commit": "4963b2c73ffbdedfffb50b9258c196ab27b963e3"
+  },
+  "_source": "git://github.com/syl22-00/pocketsphinx.js-lib.git",
+  "_target": "~0.1.0",
+  "_originalSource": "pocketsphinx.js-lib",
+  "_direct": true
+}

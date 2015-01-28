@@ -1,0 +1,30 @@
+{
+  "name": "pocketsphinx.js-en_US-rm1_200",
+  "authors": [
+    "Sylvain Chevalier <sylvain.chevalier@gmail.com>"
+  ],
+  "description": "RM1 acoustic model for Pocketsphinx.js",
+  "license": "MIT",
+  "private": false,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "pocketsphinx.js-lib": ""
+  },
+  "homepage": "https://github.com/syl22-00/pocketsphinx.js-en_US-rm1_200",
+  "_release": "630f2dc3e8",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "630f2dc3e854b2a0fe835666338fbe79ebc08062"
+  },
+  "_source": "git://github.com/syl22-00/pocketsphinx.js-en_US-rm1_200.git",
+  "_target": "*",
+  "_originalSource": "pocketsphinx.js-en_US-rm1_200",
+  "_direct": true
+}
