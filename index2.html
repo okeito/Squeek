@@ -7,7 +7,7 @@
   <body>
     <h2>PocketSphinx.js template</h2>
     <ul>
-      <li>This application works on recent versions of Chrome and Firefox with the Web Audio API.</li>
+      <li>This application works on recent asdfasdfasdfasdfversions of Chrome and Firefox with the Web Audio API.</li>
       <li>Press "Start" and speak</li>
     </ul>
     If using grammars, select one: 
@@ -22,76 +22,25 @@
     <div id="current-status">Loading page</div>
 
     <script>
-      ///////////////////////////////////////////////////////////////
-      // Set these values depending on acoustic and language models
-      // you want to use
-      // These default values are for pocketsphinx.js-en_US-rm1_200
-      // with grammars
-      //////////////////////////////////////////////////////////////
-      // recording sample rate for your acoustic model, usually 16000
-      // or 8000
       var outputSampleRate = 16000;
-      // Name of your acoustic model
       var acousticModel = "rm1_200";
-      // var acousticModel = "hub4wsj_sc_8k";
-      // var acousticModel = "tdt_sc_8k";
-      // Where to find the acoustic model (the repository name)
       var amFolder = "pocketsphinx.js-en_US-rm1_200";
-      // var amFolder = "pocketsphinx.js-zh-tdt_sc_8k";
-      // Name of your dictionary, if you use one
       var dictionary;
-      // var dictionary = "en_US/hub4.5000.dic"; // the dictionary name
-      // var dictionaryFile = "../pocketsphinx.js-en_US-hub4.5000.dic/hub4.5000.dic.js";  // the dictionary JS file name, should start with "../"
-      // var dictionary = "zh_CN/mandarin_notone.dic"; // the dictionary name
-      // var dictionaryFile = "../pocketsphinx.js-zh_CN-mandarin_notone.dic/mandarin_notone.dic.js";  // the dictionary JS file name, should start with "../"
-      // Name of your statistical language model, if you use one
       var languageModel;
-      // var languageModel = "en_US/wsj0vp.5000.DMP"; // the model name
-      // var languageModelFile = "../pocketsphinx.js-en_US-wsj0vp.5000.DMP/wsj0vp.5000.DMP.js"; // the model JS file name, should start with "../"
-      // var languageModel = "en_US/hub4.5000.DMP"; // the model name
-      // var languageModelFile = "../pocketsphinx.js-en_US-hub4.5000.DMP/hub4.5000.DMP.js"; // the model JS file name, should start with "../"
-      // var languageModel = "zh_CN/gigatdt.5000.DMP"; // the model name
-      // var languageModelFile = "../pocketsphinx.js-zh_CN-gigatdt.5000.DMP/gigatdt.5000.DMP.js"; // the model JS file name, should start with "../"
-      // You should not need to change that, unless you use special types of acoustic models, such as one with an adaptation matrix
       var amFiles = ["feat.params.js", "mdef.js", "means.js", "noisedict.js", "sendump.js", "transition_matrices.js", "variances.js"];
-      ///////////////////////////////////////////////////////////////
-
-
-
-      // This section is for the case of use of grammars
-      // and runtime-added dictionary words
-      // This is the list of words that need to be added to the recognizer
-      // This follows the CMU dictionary format
       var wordList = [["UP", "AH P"], ["DOWN", "D AW N"], ["THREE", "TH R IY"], ["FOUR", "F AO R"]];
-      // This grammar recognizes ONE and TWO
       var grammar1 = {numStates: 1, start: 0, end: 0, transitions: [{from: 0, to: 0, word: "UP"},{from: 0, to: 0, word: "DOWN"}]};
-      // This grammar recognizes THREE and FOUR
-      //var grammar2 = {numStates: 1, start: 0, end: 0, transitions: [{from: 0, to: 0, word: "THREE"}, {from: 0, to: 0, word: "FOUR"}]};
-      // This is to fill in the drop-down menu
-      // set it to undefined if you want to load a language model file
       var grammars = [{title: "Grammar 1", g: grammar1}/*, {title: "Grammar 2", g: grammar2}*/];
-      // var grammars = undefined;
       var grammarIds = [];
-
-      // These will be initialized later
       var recognizer, recorder, callbackManager, audioContext, outputContainer;
-      // Only when both recorder and recognizer are ready do we have a ready application
+      
       var recorderReady = recognizerReady = false;
 
-      // A convenience function to post a message to the recognizer and associate
-      // a callback to its response
       function postRecognizerJob(message, callback) {
         var msg = message || {};
         if (callbackManager) msg.callbackId = callbackManager.add(callback);
         if (recognizer) recognizer.postMessage(msg);
       };
-
-      // This function initializes an instance of the recorder
-      // it posts a message right away and calls onReady when it
-      // is ready so that onmessage can be properly set
-      //
-      // We use this because we want to know when the whole library
-      // is downloaded and ready.
       function spawnWorker(workerURL, onReady) {
           recognizer = new Worker(workerURL);
           recognizer.onmessage = function(event) {
@@ -100,7 +49,6 @@
           recognizer.postMessage('');
       };
 
-      // To display the hypothesis sent by the recognizer
       function updateHyp(hyp) {
         if (outputContainer) outputContainer.innerHTML = hyp;
       };
